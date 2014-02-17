@@ -19,6 +19,7 @@
 		2D67DF0D18B219C70045B525 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D67DEF518B219C70045B525 /* UIKit.framework */; };
 		2D67DF1518B219C70045B525 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D67DF1318B219C70045B525 /* InfoPlist.strings */; };
 		2D67DF1718B219C70045B525 /* NerdfeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D67DF1618B219C70045B525 /* NerdfeedTests.m */; };
+		2D67DF2218B21A2B0045B525 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D67DF2118B21A2B0045B525 /* ListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		2D67DF1218B219C70045B525 /* NerdfeedTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NerdfeedTests-Info.plist"; sourceTree = "<group>"; };
 		2D67DF1418B219C70045B525 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2D67DF1618B219C70045B525 /* NerdfeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NerdfeedTests.m; sourceTree = "<group>"; };
+		2D67DF2018B21A2B0045B525 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		2D67DF2118B21A2B0045B525 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				2D67DF0118B219C70045B525 /* NerdfeedAppDelegate.m */,
 				2D67DF0318B219C70045B525 /* Images.xcassets */,
 				2D67DEF818B219C70045B525 /* Supporting Files */,
+				2D67DF2018B21A2B0045B525 /* ListViewController.h */,
+				2D67DF2118B21A2B0045B525 /* ListViewController.m */,
 			);
 			path = Nerdfeed;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 			files = (
 				2D67DEFE18B219C70045B525 /* main.m in Sources */,
 				2D67DF0218B219C70045B525 /* NerdfeedAppDelegate.m in Sources */,
+				2D67DF2218B21A2B0045B525 /* ListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,12 +7,20 @@
 //
 
 #import "NerdfeedAppDelegate.h"
+#import "ListViewController.h"
 
 @implementation NerdfeedAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    ListViewController *lvc = [[ListViewController alloc] init];
+    
+    UINavigationController *masterNav = [[UINavigationController alloc] initWithRootViewController:lvc];
+    
+    [[self window] setRootViewController:masterNav];
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
