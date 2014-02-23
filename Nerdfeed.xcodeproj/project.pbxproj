@@ -20,6 +20,9 @@
 		2D67DF1518B219C70045B525 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D67DF1318B219C70045B525 /* InfoPlist.strings */; };
 		2D67DF1718B219C70045B525 /* NerdfeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D67DF1618B219C70045B525 /* NerdfeedTests.m */; };
 		2D67DF2218B21A2B0045B525 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D67DF2118B21A2B0045B525 /* ListViewController.m */; };
+		2D7F9A0C18B99B3E00280736 /* RSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7F9A0B18B99B3E00280736 /* RSSItem.m */; };
+		2D7F9A1218B9A47E00280736 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7F9A1118B9A47E00280736 /* WebViewController.m */; };
+		2DD36AF718B25B25008FD7B3 /* RSSChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DD36AF618B25B25008FD7B3 /* RSSChannel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,12 @@
 		2D67DF1618B219C70045B525 /* NerdfeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NerdfeedTests.m; sourceTree = "<group>"; };
 		2D67DF2018B21A2B0045B525 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		2D67DF2118B21A2B0045B525 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		2D7F9A0A18B99B3E00280736 /* RSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItem.h; sourceTree = "<group>"; };
+		2D7F9A0B18B99B3E00280736 /* RSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItem.m; sourceTree = "<group>"; };
+		2D7F9A1018B9A47E00280736 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
+		2D7F9A1118B9A47E00280736 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
+		2DD36AF518B25B25008FD7B3 /* RSSChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSChannel.h; sourceTree = "<group>"; };
+		2DD36AF618B25B25008FD7B3 /* RSSChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSChannel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,10 +121,16 @@
 			children = (
 				2D67DF0018B219C70045B525 /* NerdfeedAppDelegate.h */,
 				2D67DF0118B219C70045B525 /* NerdfeedAppDelegate.m */,
-				2D67DF0318B219C70045B525 /* Images.xcassets */,
-				2D67DEF818B219C70045B525 /* Supporting Files */,
 				2D67DF2018B21A2B0045B525 /* ListViewController.h */,
 				2D67DF2118B21A2B0045B525 /* ListViewController.m */,
+				2D7F9A1018B9A47E00280736 /* WebViewController.h */,
+				2D7F9A1118B9A47E00280736 /* WebViewController.m */,
+				2D7F9A0A18B99B3E00280736 /* RSSItem.h */,
+				2D7F9A0B18B99B3E00280736 /* RSSItem.m */,
+				2DD36AF518B25B25008FD7B3 /* RSSChannel.h */,
+				2DD36AF618B25B25008FD7B3 /* RSSChannel.m */,
+				2D67DF0318B219C70045B525 /* Images.xcassets */,
+				2D67DEF818B219C70045B525 /* Supporting Files */,
 			);
 			path = Nerdfeed;
 			sourceTree = "<group>";
@@ -245,6 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DD36AF718B25B25008FD7B3 /* RSSChannel.m in Sources */,
+				2D7F9A1218B9A47E00280736 /* WebViewController.m in Sources */,
+				2D7F9A0C18B99B3E00280736 /* RSSItem.m in Sources */,
 				2D67DEFE18B219C70045B525 /* main.m in Sources */,
 				2D67DF0218B219C70045B525 /* NerdfeedAppDelegate.m in Sources */,
 				2D67DF2218B21A2B0045B525 /* ListViewController.m in Sources */,
@@ -450,6 +468,7 @@
 				2D67DF1C18B219C70045B525 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2D67DF1D18B219C70045B525 /* Build configuration list for PBXNativeTarget "NerdfeedTests" */ = {
 			isa = XCConfigurationList;
@@ -458,6 +477,7 @@
 				2D67DF1F18B219C70045B525 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

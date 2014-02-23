@@ -8,6 +8,7 @@
 
 #import "NerdfeedAppDelegate.h"
 #import "ListViewController.h"
+#import "WebViewController.h"
 
 @implementation NerdfeedAppDelegate
 
@@ -18,6 +19,9 @@
     ListViewController *lvc = [[ListViewController alloc] init];
     
     UINavigationController *masterNav = [[UINavigationController alloc] initWithRootViewController:lvc];
+    
+    WebViewController *wvc = [[WebViewController alloc] init];
+    [lvc setWebViewController:wvc];
     
     [[self window] setRootViewController:masterNav];
     

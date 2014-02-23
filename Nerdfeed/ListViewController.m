@@ -7,8 +7,13 @@
 //
 
 #import "ListViewController.h"
+#import "RSSChannel.h"
+#import "RSSItem.h"
+#import "WebViewController.h"
 
 @implementation ListViewController
+
+@synthesize webViewController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,7 +35,7 @@
     // 这段代码只会创建一个 NSString 对象
     NSURL *url = [NSURL URLWithString:
                   @"http://forums.bignerdranch.com/smartfeed.php?"
-                  @"limit=1_DAY&sort_by=standard$feed_type=RSS2.0&feed_style=COMPACT"];
+                  @"limit=7_DAY&sort_by=standard&feed_type=RSS2.0&feed_style=COMPACT"];
     
     // 要获取 Apple 的「最新要闻」（Hot News feed），可以将以上代码替换为，
     // NSURL *url = [NSURL URLWithString:@"http://www.apple.com/pr/feeds/pr.rss"];
@@ -53,10 +58,26 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)conn
 {
-    // 检查是否收到了正确的 XML 数据
-    NSString *xmlCheck = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
+    // 创建 NSXMLParser 对象并传入获取自 Web 服务的数据
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xmlData];
     
-    NSLog(@"xmlCheck = %@", xmlCheck);
+    [parser setDelegate:self];
+    
+    // 启动解析过程：在解析 XML 数据的过程中
+    // NSXMLParser 对象会向其委托对象发送相应的委托消息
+    // 在本行代码结束运行前，主线程会阻塞（blocking）
+    [parser parse];
+    
+    // 不再需要使用 xmlData 指向的对象，释放之
+    xmlData = nil;
+    
+    // 不再需要使用 connection 指向的对象，释放之
+    connection = nil;
+    
+    NSLog(@"\n %@\n %@\n %@\n", channel, [channel title], [channel infoString]);
+    
+    // 刷新 UITableView 对象，该对象目前不会显示任何数据
+    [[self tableView] reloadData];
 }
 
 - (void)connection:(NSURLConnection *)conn didFailWithError:(NSError *)error
@@ -76,16 +97,69 @@
     [av show];
 }
 
-#pragma mark - tableview
+#pragma mark - NSXMLParserDelegate
+
+- (void)parser:(NSXMLParser *)parser
+    didStartElement:(NSString *)elementName
+    namespaceURI:(NSString *)namespaceURI
+    qualifiedName:(NSString *)qName
+    attributes:(NSDictionary *)attributeDict
+{
+    NSLog(@"\n%@ found a %@ element", self, elementName);
+    if ([elementName isEqualToString:@"channel"]) {
+        
+        // 如果 NSXMLParser 对象找到了 channel 元素的起始标记，就创建新对象并将其地址赋给相应的实例变量
+        channel = [[RSSChannel alloc] init];
+        
+        // 为新创建的 RSSChannel 对象设置「上一个委托对象」属性，指向当前对象
+        [channel setParentParserDelegate:self];
+        
+        // 将 NSXMLParser 对象的委托对象设置为新创建的 RSSChannel 对象
+        [parser setDelegate:channel];
+    }
+}
+
+#pragma mark - tableView
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 将 WebViewController 对象压入 UINavigationBar 栈
+    // 当应用首次显示 WebViewController 对象时，
+    // 会创建 WebViewController 对象的视图
+    [[self navigationController] pushViewController:webViewController animated:YES];
+    
+    // 获取选中的 RSSitem 对象
+    RSSItem *entry = [[channel items] objectAtIndex:[indexPath row]];
+    
+    // 根据 RSSItem 对象的 link 属性创建 URL
+    NSURL *url = [NSURL URLWithString:[entry link]];
+    
+    // 根据之前创建的 URL 创建 NSURLRequest 对象
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    
+    // 要求 UIWebView 对象根据 NSURLRquest 对象载入相应的网页
+    [[webViewController webView] loadRequest:req];
+    
+    // 设置 WebViewController 对象的导航条标题
+    [[webViewController navigationItem] setTitle:[entry title]];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return [[channel items] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+    }
+    RSSItem *item = [[channel items] objectAtIndex:[indexPath row]];
+    [[cell textLabel] setText:[item title]];
+    
+    return cell;
 }
 
 @end
